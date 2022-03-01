@@ -1,0 +1,50 @@
+1. Imprimimos componentes lexicos por pantalla
+2. Documentacion: es fundamental
+3. Se identifican por numeros 
+    definiciones.h
+    Convencion de salida <300, package> | <300, "package"> analizador lexico
+    El analizador sintactico solo imprime
+
+4. Tenemos un analizador sintactico y un analizador lexico y el programa fuente en go
+Todo modulo de nuestro compilador va a implementarse con dos ficheros, un .c y un .h
+El .c contiene la implementacion, mientras que el .h contiene la interfaz.
+
+Comprobar que compila en Ubuntu
+
+5. Struct con campo para entero y valor para representar los componentes lexicos
+
+Tokenizar concurrentSum.go
+Palabras reservadas -> un numero por cada una
+Strings
+Identificadores
+Comentarios -> (Identificarlos y no devolverlos)
+
+El analizador lexico debe buscar los lexemas en la tabla de simbolos
+Recibe el valor y devuelve el componente lexico 
+
+Desarrollar prototipo verital ->
+Varias fases en la que cada una hay una logica de procesamiento
+
+Fichero main > 3 actividades a desarrollar
+- 1 -> inicializar estructuras de datos 
+- 2 -> analizador sintactico
+- 3 -> fase de limpieza de memoria
+
+Modulo de errores, que permite identificar errores sencillos.
+
+El consumo de recursos tiene que ser minimo (Usar la menor cantidad de memoria posible, y lo mas rapido posible)
+
+########### DIA 2 #################
+
+/ Cargar tabla de simbolos en la inicialzacion
+funcion inicializar se invoca desde el main, esta declarada en TablaSimbolos. 
+
+Se declara la tabla de simbolos como una estructura privada dentro de su fichero, y solo se accede a ella por sus funciones de acceso
+
+isAlpha / isAlphaNum
+
+para reconocer palabras>
+ switch / case que itera sobre los caracteres, cambiando estados mediante entradas (funcion de transicion)
+ modularizar para cada automata especifico
+
+ 0b0x3 -> error lexico o sintactico 
