@@ -39,7 +39,6 @@ void destruir(abb *A) {
     if (*A != NULL) {
         destruir(&(*A)->izq);
         destruir(&(*A)->der);
-        _destruir_elem(&((*A)->info));
         free(*A);
         *A = NULL;
     }
@@ -155,21 +154,17 @@ void suprimir(abb *A, tipoelem E) {
     } else if (comp > 0) { //(E > (*A)->info) {
         suprimir(&(*A)->der, E);
     } else if (es_vacio((*A)->izq) && es_vacio((*A)->der)) {
-        _destruir_elem(&((*A)->info));
         free(*A);
         *A = NULL;
     } else if (es_vacio((*A)->izq)) { // pero no es vacio derecha
         aux = *A;
         *A = (*A)->der;
-        _destruir_elem(&aux->info);
         free(aux);
     } else if (es_vacio((*A)->der)) { //pero no es vacio izquierda
         aux = *A;
         *A = (*A)->izq;
-        _destruir_elem(&aux->info);
         free(aux);
     } else { //ni derecha ni izquierda esta vacio, busco mínimo subárbol derecho
-        _destruir_elem(&(*A)->info); //elimino la info pero no libero el nodo,
         //pues en su sitio voy a poner el mínimo del subárbol derecho
         (*A)->info = _suprimir_min(&(*A)->der);
     }
