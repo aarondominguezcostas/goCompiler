@@ -7,24 +7,17 @@
 
 int main(){
 
+    //el archivo se tiene que abrir aqui
+
+
     //inicializar la tabla de simbolos
     init();
-    openFile("src/concurrentSum.go");
+    //inicializar sistema de entrada
 
-    char *string = malloc(sizeof(char) * 100);
-
-    //bucle que lee el archivo de entrada hasta el final
-    while(!isEnd()){
-        readString(string);
-        printf("%s\n", string);
-    }
-
-    /*testing tabla de simbolos
-    insert("hola", 1);
-    printTable();
-    */
 
     //se destruye la tabla de simbolos
-    destroy();
-    closeFile();
+    destroyTable();
+    
+    //se cierra el fichero
+
 }

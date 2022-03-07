@@ -2,26 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 
+//definir tama;o de bloques
 
-FILE *file;
 
-void openFile(char *fileName){
-    file = fopen(fileName, "r");
-    if(file == NULL){
-        printf("Error: No se pudo abrir el archivo.\n");
-        exit(1);
-    }
+//TODO - Imlementar doble buffer 
+// leer bloque  a bloque
+void initSystem(){
+    
 }
 
-// TODO > arreglar problema con parentesis y otros separadores
-void readString(char *string){
-    fscanf(file, "%s", string);
+// TODO > comprobar que se lee caracter a caracter
+// cambiar a leer de los dos buffers
+void readChar(char siguiente){
+    fscanf(file, "%c", siguiente);
 }
 
-void closeFile(){
+// se finaliza el sistema
+void endSystem(){
     fclose(file);
 }
 
-int isEnd(){
-    return feof(file);
-}
+//cargar nuevo bloque de caracteres
+
+//gestionar errores

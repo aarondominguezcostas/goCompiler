@@ -7,17 +7,19 @@
 
 abb tabla;
 
-void init(){
+void initTable(){
     //inicializamos la tabla de simbolos
     crear(&tabla);
+
+    //aqui se deberian cargar todas las palabras reservadas a la tabla de simbolos
 }
 
-void destroy(){
+void destroyTable(){
     //destruimos la tabla de simbolos
     destruir(&tabla);
 }
 
-void insert(char* id, int valor){
+void insertElement(char* id, int valor){
     //insertamos un elemento en la tabla de simbolos
     tipoelem elemento;
     strcpy(elemento.identificador, id);

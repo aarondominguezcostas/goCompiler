@@ -1,12 +1,9 @@
 
-// abrir archivo para leer
-void openFile(char *fileName);
+// inicializa sistema de entrada
+void initSystem();
 
-// lee la primera cadena que encuentra
-void readString(char *string);
+// Devuelve un caracter
+void readChar(char siguiente);
 
 // cierra el archivo
-void closeFile();
-
-// determina si se está en el final del archivo
-int isEnd();
+void endSystem();
