@@ -15,14 +15,16 @@ int main(){
     }else{
         //inicializar la tabla de simbolos
         initTable();
-        printTable();
-
         //inicializar sistema de entrada
         initSystem(archivo);
+
+        printTable();
 
         //se destruye la tabla de simbolos
         destroyTable();
     
         //se cierra el fichero
+        endSystem();
+        fclose(archivo);
     }
 }

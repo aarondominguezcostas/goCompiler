@@ -21,7 +21,7 @@ void initTable(){
     crear(&tabla);
 
     //aqui se deberian cargar todas las palabras reservadas a la tabla de simbolos
-    char *palabras[8];
+    char *palabras[9];
     palabras[0] = "package";
     palabras[1] = "import";
     palabras[2] = "func";
@@ -30,8 +30,9 @@ void initTable(){
     palabras[5] = "for";
     palabras[6] = "range";
     palabras[7] = "go";
+    palabras[8] = "float32";
 
-    int valores[8];
+    int valores[9];
     valores[0] = PACKAGE;
     valores[1] = IMPORT;
     valores[2] = FUNC;
@@ -40,8 +41,9 @@ void initTable(){
     valores[5] = FOR;
     valores[6] = RANGE;
     valores[7] = GO;
+    valores[8] = FLOAT32;
 
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i < 9; i++){
         insertElement(palabras[i], valores[i]);
     }
 

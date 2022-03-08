@@ -23,16 +23,19 @@ void initSystem(FILE *input){
     delantero = bufferA;
     fread(bufferA,1,BUFFER_SIZE,archivo);
     fread(bufferB,1,BUFFER_SIZE,archivo);
-
 }
 
 // TODO > comprobar que se lee caracter a caracter
 // cambiar a leer de los dos buffers
 void readChar(char siguiente){
+
+
 }
 
 // se finaliza el sistema
 void endSystem(){
+    inicio=NULL;
+    delantero=NULL;
 }
 
 //cargar nuevo bloque de caracteres

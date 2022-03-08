@@ -6,3 +6,4 @@
 #define FOR 305
 #define RANGE 306
 #define GO 307
+#define FLOAT32 308
