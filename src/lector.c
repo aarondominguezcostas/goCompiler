@@ -24,12 +24,6 @@ void initSystem(FILE *input){
     fread(bufferA,1,BUFFER_SIZE,archivo);
     fread(bufferB,1,BUFFER_SIZE,archivo);
 
-    for(int i = 0; i < BUFFER_SIZE; i++){
-        printf("%c",bufferA[i]);
-    }
-    for(int i = 0; i < BUFFER_SIZE; i++){
-        printf("%c",bufferB[i]);
-    }
 }
 
 // TODO > comprobar que se lee caracter a caracter

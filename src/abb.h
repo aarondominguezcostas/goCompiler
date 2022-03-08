@@ -7,7 +7,7 @@
  * ordenacion y elemento de celda.
  */
 
-typedef char * tipoclave; // nombre del jugador
+typedef char * tipoclave; // tipo de clave
 
 typedef struct{
     char identificador[L];
