@@ -2,24 +2,43 @@
 #include <stdlib.h>
 #include <string.h>
 
-//definir tama;o de bloques
+#define A 0
+#define B 1
+#define BUFFER_SIZE 32
 
+FILE *archivo;
 
-//TODO - Imlementar doble buffer 
-// leer bloque  a bloque
-void initSystem(){
-    
+char bufferA[BUFFER_SIZE+1];
+char bufferB[BUFFER_SIZE+1];
+char *inicio;
+char *delantero;
+
+// inicializa el sistema de entrada
+// DUDA / Cargar 2 bloques o solo 1
+void initSystem(FILE *input){
+    archivo = input;
+    bufferA[BUFFER_SIZE] = EOF;
+    bufferB[BUFFER_SIZE] = EOF;
+    inicio = bufferA;
+    delantero = bufferA;
+    fread(bufferA,1,BUFFER_SIZE,archivo);
+    fread(bufferB,1,BUFFER_SIZE,archivo);
+
+    for(int i = 0; i < BUFFER_SIZE; i++){
+        printf("%c",bufferA[i]);
+    }
+    for(int i = 0; i < BUFFER_SIZE; i++){
+        printf("%c",bufferB[i]);
+    }
 }
 
 // TODO > comprobar que se lee caracter a caracter
 // cambiar a leer de los dos buffers
 void readChar(char siguiente){
-    fscanf(file, "%c", siguiente);
 }
 
 // se finaliza el sistema
 void endSystem(){
-    fclose(file);
 }
 
 //cargar nuevo bloque de caracteres

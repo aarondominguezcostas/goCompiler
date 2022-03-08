@@ -8,16 +8,20 @@
 int main(){
 
     //el archivo se tiene que abrir aqui
+    FILE *archivo = fopen("concurrentSum.go","r");
+    if(archivo == NULL){
+        //lanzar error
+        return 1;
+    }else{
+        //inicializar la tabla de simbolos
+        initTable();
 
+        //inicializar sistema de entrada
+        initSystem(archivo);
 
-    //inicializar la tabla de simbolos
-    init();
-    //inicializar sistema de entrada
-
-
-    //se destruye la tabla de simbolos
-    destroyTable();
+        //se destruye la tabla de simbolos
+        destroyTable();
     
-    //se cierra el fichero
-
+        //se cierra el fichero
+    }
 }
