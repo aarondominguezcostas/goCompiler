@@ -83,3 +83,12 @@ una vez aceptada una cadena, es posible leer desde el inicio al final (mejor ren
 hay que tener en cuenta el retroceso de un caracter
 
 # checkear con valgrind https://valgrind.org/
+
+
+
+
+TODO>
+Gestion de errores
+Implementar lectura de caracteres y devoluciones
+Analizador lexico
+
