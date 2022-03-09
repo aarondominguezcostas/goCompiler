@@ -13,6 +13,8 @@ char bufferB[BUFFER_SIZE+1];
 char *inicio;
 char *delantero;
 
+void _loadBlock(int block);
+
 // inicializa el sistema de entrada
 // DUDA / Cargar 2 bloques o solo 1
 void initSystem(FILE *input){
@@ -28,19 +30,19 @@ void initSystem(FILE *input){
 // cambiar a leer de los dos buffers
 char readChar(){
     if( *delantero == EOF ){
-
         //cargar nuevo bloque A
-        printf("Cargando nuevo bloque\n");
-        if (delantero == bufferA[BUFFER_SIZE]){
-            fread(bufferB,1,BUFFER_SIZE,archivo);
-            delantero = bufferB;
-        }else if (delantero == bufferB[BUFFER_SIZE]){
-            fread(bufferA,1,BUFFER_SIZE,archivo);
-            delantero = bufferA;
+        if (delantero == bufferA+BUFFER_SIZE){
+            _loadBlock(B);
+        }else if (delantero == bufferB+BUFFER_SIZE){
+            _loadBlock(A);
         }else{
             return EOF;
         }
     }
+
+    char res = *delantero;
+    delantero++;
+    return res;
 
 }
 
@@ -51,5 +53,24 @@ void endSystem(){
 }
 
 //cargar nuevo bloque de caracteres
+void _loadBlock(int block){
+    int count = 0;
+    if(block==A){
+        count = fread(bufferA,1,BUFFER_SIZE,archivo);
+        delantero = bufferA;
+
+        if (count < BUFFER_SIZE){
+            bufferA[count] = EOF;
+        }
+    }else if(block==B){
+        count = fread(bufferB,1,BUFFER_SIZE,archivo);
+        delantero = bufferB;
+
+        if (count < BUFFER_SIZE){
+            bufferB[count] = EOF;
+        }
+    }
+
+}
 
 //gestionar errores

@@ -21,11 +21,10 @@ int main(){
         printTable();
 
         char res;
-        while(res != EOF){
+        do{
+            printf("%c",res);
             res = readChar();
-            printf("%c ",res);
-        }
-
+        }while(res!= EOF);
         //se destruye la tabla de simbolos
         destroyTable();
     
