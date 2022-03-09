@@ -20,6 +20,12 @@ int main(){
 
         printTable();
 
+        char res;
+        while(res != EOF){
+            res = readChar();
+            printf("%c ",res);
+        }
+
         //se destruye la tabla de simbolos
         destroyTable();
     

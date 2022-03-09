@@ -22,13 +22,25 @@ void initSystem(FILE *input){
     inicio = bufferA;
     delantero = bufferA;
     fread(bufferA,1,BUFFER_SIZE,archivo);
-    fread(bufferB,1,BUFFER_SIZE,archivo);
 }
 
 // TODO > comprobar que se lee caracter a caracter
 // cambiar a leer de los dos buffers
-void readChar(char siguiente){
+char readChar(){
+    if( *delantero == EOF ){
 
+        //cargar nuevo bloque A
+        printf("Cargando nuevo bloque\n");
+        if (delantero == bufferA[BUFFER_SIZE]){
+            fread(bufferB,1,BUFFER_SIZE,archivo);
+            delantero = bufferB;
+        }else if (delantero == bufferB[BUFFER_SIZE]){
+            fread(bufferA,1,BUFFER_SIZE,archivo);
+            delantero = bufferA;
+        }else{
+            return EOF;
+        }
+    }
 
 }
 

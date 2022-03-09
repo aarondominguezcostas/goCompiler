@@ -5,7 +5,7 @@
 void initSystem(FILE *input);
 
 // Devuelve un caracter
-void readChar(char siguiente);
+char readChar();
 
 // cierra el archivo
 void endSystem();
