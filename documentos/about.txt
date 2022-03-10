@@ -89,6 +89,5 @@ hay que tener en cuenta el retroceso de un caracter
 
 TODO>
 Gestion de errores
-Implementar lectura de caracteres y devoluciones
+Implementar devoluciones
 Analizador lexico
-

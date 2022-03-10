@@ -17,8 +17,8 @@ void _loadBlock(int block);
 
 // inicializa el sistema de entrada
 // DUDA / Cargar 2 bloques o solo 1
-void initSystem(FILE *input){
-    archivo = input;
+void initSystem(char* inputFile){
+    archivo = fopen(inputFile, "r");
     bufferA[BUFFER_SIZE] = EOF;
     bufferB[BUFFER_SIZE] = EOF;
     inicio = bufferA;
@@ -61,6 +61,7 @@ char readChar(){
 void endSystem(){
     inicio=NULL;
     delantero=NULL;
+    fclose(archivo);
 }
 
 //cargar nuevo bloque de caracteres
@@ -84,7 +85,9 @@ void _loadBlock(int block){
 
 }
 
-//TODO : devolver todo entre el puntero de inicio y delantero
+//TODO : devolver todo entre el puntero de inicio y delantero, y mover los punteros
 void getWord(){
 
 }
+
+//devolver caracter
