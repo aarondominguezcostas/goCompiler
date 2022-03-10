@@ -32,8 +32,19 @@ char readChar(){
     if( *delantero == EOF ){
         //cargar nuevo bloque A
         if (delantero == bufferA+BUFFER_SIZE){
+            
+
+            
             _loadBlock(B);
         }else if (delantero == bufferB+BUFFER_SIZE){
+
+            //comprobar que el puntero de inicio no esta en el bloque que se va a cargar
+            //if(inicio >= &bufferA[0] && inicio <= &bufferA[BUFFER_SIZE]){
+            //    //no se puede cargar un nuevo bloque
+            //    printf("No se puede cargar un nuevo bloque");
+            //    return EOF;
+            //}
+
             _loadBlock(A);
         }else{
             return EOF;
@@ -73,4 +84,7 @@ void _loadBlock(int block){
 
 }
 
-//gestionar errores
+//TODO : devolver todo entre el puntero de inicio y delantero
+void getWord(){
+
+}
