@@ -1,3 +1,6 @@
+#ifndef DEF_H
+#define DEF_H
+
 #define PACKAGE 300
 #define IMPORT 301
 #define FUNC 302
@@ -7,3 +10,15 @@
 #define RANGE 306
 #define GO 307
 #define FLOAT32 308
+
+#define L 30
+
+#define INTEGER 310
+
+//cambiar a dinamico + exponer menos codigo aqui
+typedef struct{
+    char identificador[L];
+    int valor;
+} tipoelem;
+
+#endif

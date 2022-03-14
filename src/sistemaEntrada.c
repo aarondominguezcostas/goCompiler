@@ -86,8 +86,19 @@ void _loadBlock(int block){
 }
 
 //TODO : devolver todo entre el puntero de inicio y delantero, y mover los punteros
-void getWord(){
+void getWord(char *word){
+    int count=0;
+    while(inicio!=delantero){
+        word[count] = *inicio;
+        inicio++;
+        count++;
 
+        if(inicio == bufferA+BUFFER_SIZE){
+            inicio = bufferB;
+        }else if(inicio == bufferB+BUFFER_SIZE){
+            inicio = bufferA;
+        }
+    }
 }
 
 //devolver caracter

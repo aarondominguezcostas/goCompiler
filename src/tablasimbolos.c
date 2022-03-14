@@ -15,6 +15,7 @@ void initTable();
 void destroyTable();
 void printTable();
 void _printTable(abb A);
+int nextId = 400;
 
 void initTable(){
     //inicializamos la tabla de simbolos
@@ -78,5 +79,18 @@ void _printTable(abb A){
         leer(A, &E);
         printf("%-10s: %d\n", E.identificador,E.valor);
         _printTable(der(A));
+    }
+}
+
+//funcion externa que permite buscar un elemento en la tabla de simbolos
+//si el elemento esta en la tabla de simbolos, devuelve un valor, si no, se introduce
+
+void findElement(tipoelem *element){
+    buscar_nodo(tabla, element->identificador, element);
+    
+    if(element->valor == -1){
+        insertElement(element->identificador, nextId);
+        element->valor = nextId;
+        nextId++;
     }
 }

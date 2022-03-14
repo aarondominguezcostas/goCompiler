@@ -1,6 +1,6 @@
 #ifndef ABB_H
 #define ABB_H
-#define L 30
+#include "definiciones.h"
 
 /**
  * Tipo de dato abstracto para arbol binario con clave de
@@ -8,11 +8,6 @@
  */
 
 typedef char * tipoclave; // tipo de clave
-
-typedef struct{
-    char identificador[L];
-    int valor;
-} tipoelem;
 		
 typedef struct celda * abb;//tipo opaco
 

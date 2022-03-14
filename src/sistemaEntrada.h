@@ -12,4 +12,6 @@ char readChar();
 // cierra el archivo
 void endSystem();
 
+void getWord(char* word);
+
 #endif

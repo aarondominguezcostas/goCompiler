@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 struct celda {
     tipoelem info;
     struct celda *izq, *der;
