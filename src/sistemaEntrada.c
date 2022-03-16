@@ -33,17 +33,21 @@ char readChar(){
         //cargar nuevo bloque A
         if (delantero == bufferA+BUFFER_SIZE){
             
-
+            if(inicio >= &bufferB[0] && inicio <= &bufferB[BUFFER_SIZE]){
+                //no se puede cargar un nuevo bloque
+                printf("No se puede cargar un nuevo bloque");
+                return EOF;
+            }
             
             _loadBlock(B);
         }else if (delantero == bufferB+BUFFER_SIZE){
 
             //comprobar que el puntero de inicio no esta en el bloque que se va a cargar
-            //if(inicio >= &bufferA[0] && inicio <= &bufferA[BUFFER_SIZE]){
-            //    //no se puede cargar un nuevo bloque
-            //    printf("No se puede cargar un nuevo bloque");
-            //    return EOF;
-            //}
+            if(inicio >= &bufferA[0] && inicio <= &bufferA[BUFFER_SIZE]){
+                //no se puede cargar un nuevo bloque
+                printf("No se puede cargar un nuevo bloque");
+                return EOF;
+            }
 
             _loadBlock(A);
         }else{
@@ -82,17 +86,26 @@ void _loadBlock(int block){
             bufferB[count] = EOF;
         }
     }
-
 }
 
-//TODO : devolver todo entre el puntero de inicio y delantero, y mover los punteros
+//esta funcion se encarga de devolver el lexema
 void getWord(char *word){
+    int max = sizeof(word);
     int count=0;
     while(inicio!=delantero){
+
+        //hay que duplicar el tamaño de la palabra
+        if(count==max){
+            realloc(word,max*2);
+            max = max*2;
+        }
+
+        //se recorren los buffers
         word[count] = *inicio;
         inicio++;
         count++;
 
+        //si se llega al final del buffer se cambia al inicio del otro
         if(inicio == bufferA+BUFFER_SIZE){
             inicio = bufferB;
         }else if(inicio == bufferB+BUFFER_SIZE){
