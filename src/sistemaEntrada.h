@@ -14,4 +14,6 @@ void endSystem();
 
 void getWord(char* word);
 
+void devolver();
+
 #endif

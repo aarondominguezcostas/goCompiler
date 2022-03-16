@@ -38,6 +38,7 @@ void destruir(abb *A) {
     if (*A != NULL) {
         destruir(&(*A)->izq);
         destruir(&(*A)->der);
+        free((*A)->info.identificador);
         free(*A);
         *A = NULL;
     }

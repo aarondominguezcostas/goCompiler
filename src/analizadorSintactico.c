@@ -5,5 +5,6 @@
 #include "definiciones.h"
 
 void analizar(){
-    nextComponent();
+    tipoelem e = nextComponent();
+    printf("\n%s: %d",e.identificador, e.valor);
 }

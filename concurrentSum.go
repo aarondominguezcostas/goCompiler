@@ -1,4 +1,4 @@
-180 package main
+package main
 
 import "fmt"
 

@@ -15,7 +15,6 @@ void initTable();
 void destroyTable();
 void printTable();
 void _printTable(abb A);
-int nextId = 400;
 
 void initTable(){
     //inicializamos la tabla de simbolos
@@ -58,6 +57,7 @@ void destroyTable(){
 //funcion que permite insertar un elemento en la tabla de simbolos
 void insertElement(char* id, int valor){
     tipoelem elemento;
+    elemento.identificador = (char*)malloc(sizeof(char)*8);
     strcpy(elemento.identificador, id);
     elemento.valor = valor;
 
@@ -77,7 +77,7 @@ void _printTable(abb A){
     if (!es_vacio(A)) {
         _printTable(izq(A));
         leer(A, &E);
-        printf("%-10s: %d\n", E.identificador,E.valor);
+        printf("%-10s : %d\n",E.identificador, E.valor);
         _printTable(der(A));
     }
 }
@@ -86,11 +86,11 @@ void _printTable(abb A){
 //si el elemento esta en la tabla de simbolos, devuelve un valor, si no, se introduce
 
 void findElement(tipoelem *element){
+
     buscar_nodo(tabla, element->identificador, element);
     
     if(element->valor == -1){
-        insertElement(element->identificador, nextId);
-        element->valor = nextId;
-        nextId++;
+        insertElement(element->identificador, ID);
+        element->valor = ID;
     }
 }

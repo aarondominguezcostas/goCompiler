@@ -1,2 +1,4 @@
+#include "definiciones.h"
 
-void nextComponent();
+
+tipoelem nextComponent();

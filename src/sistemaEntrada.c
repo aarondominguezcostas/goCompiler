@@ -102,3 +102,7 @@ void getWord(char *word){
 }
 
 //devolver caracter
+void devolver(){
+    delantero--;
+    printf("Devolviendo caracter %c",*delantero);
+}

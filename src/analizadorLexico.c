@@ -1,16 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
+#include "definiciones.h"
 #include "tablaSimbolos.h"
 #include "sistemaEntrada.h"
-#include "definiciones.h"
 
 void _numbers(tipoelem *actual);
+void _identifier(tipoelem *actual);
+
 
 tipoelem nextComponent(){
     char siguiente = 0;
     int done = 0;
+
+    //creo el elemento para devolverlo
     tipoelem actual;
+    actual.identificador = (char*)malloc(sizeof(char)*8);
+
 
     while(!done){
 
@@ -23,6 +30,9 @@ tipoelem nextComponent(){
         if(isdigit(siguiente)){ 
             printf("Se ha encontrado un numero: ");
             _numbers(&actual);
+        }else if(isalpha(siguiente) || siguiente == '_'){
+            printf("Se ha encontrado un identificador: ");
+            _identifier(&actual);
         }
 
         done = 1;
@@ -50,10 +60,10 @@ void _numbers(tipoelem *actual){
     char base = 0;
     int done = 0;
     char under = 0;
+    int fp = 0;
 
     while(!done){
         siguiente = readChar();
-        printf("%c", siguiente);
 
         if( siguiente == 'b' || siguiente == 'B' || siguiente == 'o' || siguiente == 'O' || siguiente == 'x' || siguiente == 'X' ){
 
@@ -83,12 +93,37 @@ void _numbers(tipoelem *actual){
         }else{
             done = 1;
             //devolver al SE
+            devolver();
             
             //construir tipoelem
             getWord(actual->identificador);
-            actual->valor = 300;
+            actual->valor = INTEGER;
         }
-
     }
+}
 
+
+void _identifier(tipoelem *actual){
+    char siguiente = 0;
+    int done = 0;
+
+    actual->valor=-1;
+
+    while(!done){
+        siguiente = readChar();
+
+        if( isalpha(siguiente) || siguiente == '_' || isdigit(siguiente) ){
+            //no hacer nada
+        }else{
+            done = 1;
+            //devolver al SE
+            devolver();
+            
+            //construir tipoelem
+            getWord(actual->identificador);
+
+            //buscar en la tabla de simbolos
+            findElement(actual);
+        }
+    }
 }

@@ -14,10 +14,12 @@
 #define L 30
 
 #define INTEGER 310
+#define ID 310
+
 
 //cambiar a dinamico + exponer menos codigo aqui
 typedef struct{
-    char identificador[L];
+    char *identificador;
     int valor;
 } tipoelem;
 
