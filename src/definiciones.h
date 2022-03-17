@@ -10,13 +10,9 @@
 #define RANGE 306
 #define GO 307
 #define FLOAT32 308
-
-#define L 30
-
 #define INTEGER 450
-#define ID 500
+#define ID 550
 
-//exponer menos codigo aqui
 typedef struct  {
     char *identificador;
     int valor;
