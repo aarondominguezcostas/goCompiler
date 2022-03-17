@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "definiciones.h"
 
 #define A 0
 #define B 1
@@ -89,14 +90,17 @@ void _loadBlock(int block){
 }
 
 //esta funcion se encarga de devolver el lexema
-void getWord(char *word){
-    int max = sizeof(word);
+void getWord(tipoelem *lexema){
+    
+    lexema->identificador = (char*)malloc(sizeof(char)*8);
+
+    int max = sizeof(lexema->identificador);
     int count=0;
     while(inicio!=delantero){
 
         //hay que duplicar el tamaño de la palabra
         if(count==max){
-            void *try = realloc(word,max*2);
+            void *try = realloc(lexema->identificador,max*2);
             if(try==NULL){
                 printf("Error: no se pudo duplicar el tamaño de la palabra");
                 exit(1);
@@ -105,7 +109,7 @@ void getWord(char *word){
         }
 
         //se recorren los buffers
-        word[count] = *inicio;
+        lexema->identificador[count] = *inicio;
         inicio++;
         count++;
 
@@ -121,5 +125,9 @@ void getWord(char *word){
 //devolver caracter
 void devolver(){
     delantero--;
-    printf("Devolviendo caracter %c",*delantero);
+}
+
+//avanzar inicio
+void avanzar(){
+    inicio++;
 }

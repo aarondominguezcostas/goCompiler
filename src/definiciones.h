@@ -13,14 +13,13 @@
 
 #define L 30
 
-#define INTEGER 310
-#define ID 310
-
+#define INTEGER 450
+#define ID 500
 
 //exponer menos codigo aqui
-typedef struct{
+typedef struct  {
     char *identificador;
     int valor;
-} tipoelem;
+}tipoelem;
 
 #endif

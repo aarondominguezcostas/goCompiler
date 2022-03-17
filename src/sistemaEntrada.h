@@ -1,6 +1,6 @@
 #ifndef LECTOR_H
 #define LECTOR_H
-
+#include "definiciones.h"
 //Libreria del sistema de entrada del compilador
 
 // inicializa sistema de entrada
@@ -12,8 +12,10 @@ char readChar();
 // cierra el archivo
 void endSystem();
 
-void getWord(char* word);
+void getWord(tipoelem *lexema);
 
 void devolver();
+
+void avanzar();
 
 #endif

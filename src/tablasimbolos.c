@@ -64,6 +64,10 @@ void insertElement(char* id, int valor){
     insertar(&tabla, elemento);
 }
 
+void insertTipoelem(tipoelem elemento){
+    insertar(&tabla, elemento);
+}
+
 //funcion externa que permite imprimir la tabla de simbolos
 void printTable(){
     //imprimimos la tabla de simbolos
@@ -87,10 +91,14 @@ void _printTable(abb A){
 
 void findElement(tipoelem *element){
 
+    //buscamos el elemento en la tabla de simbolos
+    printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
     buscar_nodo(tabla, element->identificador, element);
     
     if(element->valor == -1){
-        insertElement(element->identificador, ID);
         element->valor = ID;
+        insertTipoelem(*element);
+        printf("\nElemento %s no encontrado en la tabla de simbolos. Se ha insertado con el valor: %d.\n", element->identificador, element->valor);
+
     }
 }

@@ -16,51 +16,49 @@ tipoelem nextComponent(){
 
     //creo el elemento para devolverlo
     tipoelem actual;
-    actual.identificador = (char*)malloc(sizeof(char)*8);
-
 
     while(!done){
 
         siguiente = readChar();
 
-        printf("%c", siguiente);
 
         //todos los automatas van aqui
         //automata de numeros
         if(isdigit(siguiente)){ 
-            printf("Se ha encontrado un numero: ");
+            printf("\nSe ha encontrado un numero");
+            printf("%c", siguiente);
+
             _numbers(&actual);
+            done = 1;
+
+        //automata de identificadores
         }else if(isalpha(siguiente) || siguiente == '_'){
-            printf("Se ha encontrado un identificador: ");
+            printf("\nSe ha encontrado un identificador: %c \n", siguiente);
+    
             _identifier(&actual);
-        }
+            done = 1;
 
-        done = 1;
-
-        //acabar de analizar componente lexico
-        if(siguiente=='e'){
-
-            //devolver al SE
-
-            //construir tipoelem
-            getWord(actual.identificador);
+        //todos los caracteres como ' ' y '\n' 
+        }else if(siguiente == ' '){
             actual.valor = -1;
-
-            findElement(&actual);
-            printf("\n%s , %d",actual.identificador, actual.valor);
+            avanzar();
+            done = 1;
         }
+
+        
     }
 
     return actual;
 }
 
+//automata de numeros
 void _numbers(tipoelem *actual){
 
     char siguiente = 0;
     char base = 0;
     int done = 0;
     char under = 0;
-    int fp = 0;
+    //int fp = 0;
 
     while(!done){
         siguiente = readChar();
@@ -96,13 +94,13 @@ void _numbers(tipoelem *actual){
             devolver();
             
             //construir tipoelem
-            getWord(actual->identificador);
+            getWord(actual);
             actual->valor = INTEGER;
         }
     }
 }
 
-
+//automata de identificadores
 void _identifier(tipoelem *actual){
     char siguiente = 0;
     int done = 0;
@@ -114,13 +112,15 @@ void _identifier(tipoelem *actual){
 
         if( isalpha(siguiente) || siguiente == '_' || isdigit(siguiente) ){
             //no hacer nada
+            printf("siguiendo id: %c\n",siguiente);
         }else{
             done = 1;
             //devolver al SE
             devolver();
             
             //construir tipoelem
-            getWord(actual->identificador);
+            getWord(actual);
+
 
             //buscar en la tabla de simbolos
             findElement(actual);
