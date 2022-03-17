@@ -17,7 +17,7 @@
 #define ID 310
 
 
-//cambiar a dinamico + exponer menos codigo aqui
+//exponer menos codigo aqui
 typedef struct{
     char *identificador;
     int valor;
