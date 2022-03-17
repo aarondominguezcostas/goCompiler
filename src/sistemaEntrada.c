@@ -76,12 +76,16 @@ void _loadBlock(int block){
         count = fread(bufferA,1,BUFFER_SIZE,archivo);
         delantero = bufferA;
 
+        printf("\nCargando bloque A:\n%s", bufferA);
+
         if (count < BUFFER_SIZE){
             bufferA[count] = EOF;
         }
     }else if(block==B){
         count = fread(bufferB,1,BUFFER_SIZE,archivo);
         delantero = bufferB;
+
+        printf("\nCargando bloque B:\n%s", bufferB);
 
         if (count < BUFFER_SIZE){
             bufferB[count] = EOF;

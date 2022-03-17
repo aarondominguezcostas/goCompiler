@@ -39,9 +39,12 @@ tipoelem nextComponent(){
             done = 1;
 
         //todos los caracteres como ' ' y '\n' 
-        }else if(siguiente == ' '){
+        }else if(siguiente == ' ' || siguiente == '\n' || siguiente == '\t' || siguiente == '\r' || siguiente == '"'){
             actual.valor = -1;
             avanzar();
+            done = 1;
+        }else if(siguiente == EOF){
+            actual.valor = -100;
             done = 1;
         }
 
