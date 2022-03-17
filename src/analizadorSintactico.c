@@ -5,7 +5,7 @@
 #include "definiciones.h"
 
 void analizar(){
-
+    //itera por todos los componentes
     tipoelem e;
     do{
         e = nextComponent();
