@@ -24,7 +24,7 @@ void initSystem(char* inputFile){
     bufferB[BUFFER_SIZE] = EOF;
     inicio = bufferA;
     delantero = bufferA;
-    fread(bufferA,1,BUFFER_SIZE,archivo);
+    fread(bufferA,sizeof(char),BUFFER_SIZE,archivo);
 }
 
 // TODO > comprobar que se lee caracter a caracter
@@ -73,19 +73,15 @@ void endSystem(){
 void _loadBlock(int block){
     int count = 0;
     if(block==A){
-        count = fread(bufferA,1,BUFFER_SIZE,archivo);
+        count = fread(bufferA,sizeof(char),BUFFER_SIZE,archivo);
         delantero = bufferA;
-
-        printf("\nCargando bloque A:\n%s", bufferA);
 
         if (count < BUFFER_SIZE){
             bufferA[count] = EOF;
         }
     }else if(block==B){
-        count = fread(bufferB,1,BUFFER_SIZE,archivo);
+        count = fread(bufferB,sizeof(char),BUFFER_SIZE,archivo);
         delantero = bufferB;
-
-        printf("\nCargando bloque B:\n%s", bufferB);
 
         if (count < BUFFER_SIZE){
             bufferB[count] = EOF;
@@ -95,7 +91,6 @@ void _loadBlock(int block){
 
 //esta funcion se encarga de devolver el lexema
 void getWord(tipoelem *lexema){
-    
     lexema->identificador = (char*)malloc(sizeof(char)*8);
 
     int max = sizeof(lexema->identificador);
@@ -134,4 +129,10 @@ void devolver(){
 //avanzar inicio
 void avanzar(){
     inicio++;
+        //comprobar que no se quedo EOF
+    if(inicio == bufferA+BUFFER_SIZE){
+        inicio = bufferB;
+    }else if(inicio == bufferB+BUFFER_SIZE){
+        inicio = bufferA;
+    }
 }

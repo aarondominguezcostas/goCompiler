@@ -13,11 +13,17 @@ void _identifier(tipoelem *actual);
 tipoelem nextComponent(){
     char siguiente = 0;
     int done = 0;
+    int avanzaNext = 0;
 
     //creo el elemento para devolverlo
     tipoelem actual;
 
     while(!done){
+
+        if(avanzaNext){
+            avanzar();
+            avanzaNext = 0;
+        }
 
         siguiente = readChar();
 
@@ -25,15 +31,15 @@ tipoelem nextComponent(){
         //todos los automatas van aqui
         //automata de numeros
         if(isdigit(siguiente)){ 
-            printf("\nSe ha encontrado un numero");
-            printf("%c", siguiente);
+            //printf("\nSe ha encontrado un numero");
+           // printf("%c", siguiente);
 
             _numbers(&actual);
             done = 1;
 
         //automata de identificadores
         }else if(isalpha(siguiente) || siguiente == '_'){
-            printf("\nSe ha encontrado un identificador: %c \n", siguiente);
+            //printf("\nSe ha encontrado un identificador: %c \n", siguiente);
     
             _identifier(&actual);
             done = 1;
@@ -41,7 +47,7 @@ tipoelem nextComponent(){
         //todos los caracteres como ' ' y '\n' 
         }else if(siguiente == ' ' || siguiente == '\n' || siguiente == '\t' || siguiente == '\r' || siguiente == '"'){
             actual.valor = -1;
-            avanzar();
+            avanzaNext = 1;
             done = 1;
         }else if(siguiente == EOF){
             actual.valor = -100;
@@ -115,7 +121,6 @@ void _identifier(tipoelem *actual){
 
         if( isalpha(siguiente) || siguiente == '_' || isdigit(siguiente) ){
             //no hacer nada
-            printf("siguiendo id: %c\n",siguiente);
         }else{
             done = 1;
             //devolver al SE

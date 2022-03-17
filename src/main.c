@@ -19,6 +19,7 @@ int main(){
 
     analizar();
 
+    printTable();
     destroyTable();
     endSystem();
 }
