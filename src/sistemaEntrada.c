@@ -96,7 +96,11 @@ void getWord(char *word){
 
         //hay que duplicar el tamaño de la palabra
         if(count==max){
-            realloc(word,max*2);
+            void *try = realloc(word,max*2);
+            if(try==NULL){
+                printf("Error: no se pudo duplicar el tamaño de la palabra");
+                exit(1);
+            }
             max = max*2;
         }
 
