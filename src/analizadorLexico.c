@@ -67,6 +67,7 @@ void _numbers(tipoelem *actual){
     char base = 0;
     int done = 0;
     char under = 0;
+    int hex = 0;
     //int fp = 0;
 
     while(!done){
@@ -84,6 +85,9 @@ void _numbers(tipoelem *actual){
             }else{
                 base = 1;
             }
+            if(siguiente == 'x' || siguiente == 'X'){
+                hex = 1;
+            }
 
         }else if( siguiente == '_' ){
             
@@ -97,6 +101,9 @@ void _numbers(tipoelem *actual){
 
         }else if( isdigit(siguiente) ){
             under = 0;
+        }else if(hex == 1 && ((siguiente >= 65 && siguiente <= 70) || (siguiente >= 97 && siguiente <= 102))){
+            under = 0;
+            printf("hex!  ");
         }else{
             done = 1;
             //devolver al SE
