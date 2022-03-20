@@ -92,13 +92,13 @@ void _printTable(abb A){
 void findElement(tipoelem *element){
 
     //buscamos el elemento en la tabla de simbolos
-    printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
+    //printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
     buscar_nodo(tabla, element->identificador, element);
     
     if(element->valor == -1){
         element->valor = ID;
         insertTipoelem(*element);
-        printf("\nElemento %s no encontrado en la tabla de simbolos. Se ha insertado con el valor: %d.\n", element->identificador, element->valor);
+        //printf("\nElemento %s no encontrado en la tabla de simbolos. Se ha insertado con el valor: %d.\n", element->identificador, element->valor);
 
     }
 }

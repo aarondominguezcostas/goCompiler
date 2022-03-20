@@ -18,4 +18,6 @@ void devolver();
 
 void avanzar();
 
+void readComment();
+
 #endif

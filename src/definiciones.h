@@ -11,6 +11,9 @@
 #define GO 307
 #define FLOAT32 308
 #define INTEGER 450
+#define STRING 451
+#define OPERATOR 452
+
 #define ID 550
 
 typedef struct  {

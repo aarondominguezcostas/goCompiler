@@ -11,7 +11,7 @@ void analizar(){
         e = nextComponent();
 
         if(e.valor != -1){
-            printf("\n%s: %d",e.identificador, e.valor);
+            printf("\n<\"%s\", %d>",e.identificador, e.valor);
         }
     }while(e.valor != -100);
 

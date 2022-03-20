@@ -52,6 +52,7 @@ char readChar(){
 
             _loadBlock(A);
         }else{
+            delantero++;
             return EOF;
         }
     }
@@ -129,10 +130,21 @@ void devolver(){
 //avanzar inicio
 void avanzar(){
     inicio++;
-        //comprobar que no se quedo EOF
+
+    //comprobar que no se quedo EOF
     if(inicio == bufferA+BUFFER_SIZE){
         inicio = bufferB;
     }else if(inicio == bufferB+BUFFER_SIZE){
         inicio = bufferA;
     }
+
+}
+
+void readComment(){
+    if (delantero == bufferA+BUFFER_SIZE){
+        _loadBlock(B);
+    }else if(delantero == bufferB+BUFFER_SIZE){
+        _loadBlock(A);
+    }
+    inicio = delantero;
 }
