@@ -69,6 +69,8 @@ tipoelem nextComponent(){
             avanzaNext = 1;
         }else if(siguiente == EOF){
             actual.valor = -100;
+            actual.identificador = (char*)malloc(sizeof(char)*4);
+            strcpy(actual.identificador, "EOF");
             done = 1;
         }
     }
@@ -89,7 +91,10 @@ void _numbers(tipoelem *actual){
     while(!done){
         siguiente = readChar();
 
-        if( siguiente == 'b' || siguiente == 'B' || siguiente == 'o' || siguiente == 'O' || siguiente == 'x' || siguiente == 'X' ){
+
+        if(hex == 1 && ((siguiente >= 65 && siguiente <= 70) || (siguiente >= 97 && siguiente <= 102))){
+            under = 0;
+        }else if( siguiente == 'b' || siguiente == 'B' || siguiente == 'o' || siguiente == 'O' || siguiente == 'x' || siguiente == 'X' ){
 
             //si ya ha aparecido una base, no se puede volver a aparecer
             if(base==1){
@@ -117,9 +122,6 @@ void _numbers(tipoelem *actual){
 
         }else if( isdigit(siguiente) ){
             under = 0;
-        }else if(hex == 1 && ((siguiente >= 65 && siguiente <= 70) || (siguiente >= 97 && siguiente <= 102))){
-            under = 0;
-            printf("hex!  ");
         }else{
             done = 1;
             //devolver al SE

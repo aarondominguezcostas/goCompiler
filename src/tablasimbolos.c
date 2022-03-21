@@ -71,7 +71,7 @@ void insertTipoelem(tipoelem elemento){
 //funcion externa que permite imprimir la tabla de simbolos
 void printTable(){
     //imprimimos la tabla de simbolos
-    printf("\nTabla de simbolos:\n");
+    printf("\n\nTabla de simbolos:\n");
     _printTable(tabla);
 }
 

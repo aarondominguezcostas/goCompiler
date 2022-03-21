@@ -107,17 +107,21 @@ void getWord(tipoelem *lexema){
             }
             max = max*2;
         }
+        if(count>BUFFER_SIZE){
+            printf("tamaño excedido");
+            inicio = delantero;
+        }else{
+            //se recorren los buffers
+            lexema->identificador[count] = *inicio;
+            inicio++;
+            count++;
 
-        //se recorren los buffers
-        lexema->identificador[count] = *inicio;
-        inicio++;
-        count++;
-
-        //si se llega al final del buffer se cambia al inicio del otro
-        if(inicio == bufferA+BUFFER_SIZE){
-            inicio = bufferB;
-        }else if(inicio == bufferB+BUFFER_SIZE){
-            inicio = bufferA;
+            //si se llega al final del buffer se cambia al inicio del otro
+            if(inicio == bufferA+BUFFER_SIZE){
+                inicio = bufferB;
+            }else if(inicio == bufferB+BUFFER_SIZE){
+                inicio = bufferA;
+            }
         }
     }
 }
