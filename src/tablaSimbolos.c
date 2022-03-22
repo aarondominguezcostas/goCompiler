@@ -92,7 +92,7 @@ void _printTable(abb A){
 void findElement(tipoelem *element){
 
     //buscamos el elemento en la tabla de simbolos
-    printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
+    //printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
 
     tipoelem find;
     find.valor = -1;
