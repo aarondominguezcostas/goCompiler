@@ -154,7 +154,7 @@ void _identifier(tipoelem *actual){
             getWord(actual);
 
             //buscar en la tabla de simbolos
-            actual = findElement(actual);
+            findElement(actual);
         }
     }
 }
