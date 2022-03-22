@@ -17,8 +17,9 @@ tipoelem nextComponent(){
     int done = 0;
     int avanzaNext = 0;
 
-    //creo el elemento para devolverlo
     tipoelem actual;
+
+    actual.identificador = (char*)malloc(sizeof(char)*8);
 
     while(!done){
 
@@ -153,7 +154,7 @@ void _identifier(tipoelem *actual){
             getWord(actual);
 
             //buscar en la tabla de simbolos
-            findElement(actual);
+            actual = findElement(actual);
         }
     }
 }

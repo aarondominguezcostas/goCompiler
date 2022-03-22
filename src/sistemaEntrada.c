@@ -5,7 +5,7 @@
 
 #define A 0
 #define B 1
-#define BUFFER_SIZE 32
+#define BUFFER_SIZE 64
 
 FILE *archivo;
 
@@ -92,20 +92,20 @@ void _loadBlock(int block){
 
 //esta funcion se encarga de devolver el lexema
 void getWord(tipoelem *lexema){
-    lexema->identificador = (char*)malloc(sizeof(char)*8);
 
     int max = sizeof(lexema->identificador);
     int count=0;
     while(inicio!=delantero){
 
         //hay que duplicar el tamaño de la palabra
-        if(count==max){
-            void *try = realloc(lexema->identificador,max*2);
-            if(try==NULL){
+        if(count==(max-1)){
+            max = max*2;
+            lexema->identificador = (char*) realloc(lexema->identificador, max);
+            if(lexema->identificador == NULL){
                 printf("Error: no se pudo duplicar el tamaño de la palabra");
                 exit(1);
+                printf("%d\n",max); 
             }
-            max = max*2;
         }
         if(count>BUFFER_SIZE){
             printf("tamaño excedido");

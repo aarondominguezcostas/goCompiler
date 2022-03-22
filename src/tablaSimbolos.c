@@ -88,17 +88,18 @@ void _printTable(abb A){
 
 //funcion externa que permite buscar un elemento en la tabla de simbolos
 //si el elemento esta en la tabla de simbolos, devuelve un valor, si no, se introduce
-
+// Hay que devolver un nuevo elemento con el valor de la tabla de simbolos
 void findElement(tipoelem *element){
 
     //buscamos el elemento en la tabla de simbolos
-    //printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
-    buscar_nodo(tabla, element->identificador, element);
-    
-    if(element->valor == -1){
-        element->valor = ID;
-        insertTipoelem(*element);
-        //printf("\nElemento %s no encontrado en la tabla de simbolos. Se ha insertado con el valor: %d.\n", element->identificador, element->valor);
+    printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
 
+    tipoelem find;
+    find.valor = -1;
+    buscar_nodo(tabla, element->identificador, &find);
+    
+    if(find.valor == -1){
+        element->valor = ID;
+        insertElement(element->identificador, element->valor);
     }
 }
