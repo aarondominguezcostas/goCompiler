@@ -69,8 +69,6 @@ tipoelem nextComponent(){
             avanzaNext = 1;
         }else if(siguiente == EOF){
             actual.valor = -100;
-            actual.identificador = (char*)malloc(sizeof(char)*4);
-            strcpy(actual.identificador, "EOF");
             done = 1;
         }
     }

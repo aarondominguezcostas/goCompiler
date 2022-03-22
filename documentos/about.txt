@@ -88,3 +88,4 @@ TODO>
 Gestion de errores
 Analizador lexico, numeros
 repasar tama;o de buffers
+contar saltos de linea???

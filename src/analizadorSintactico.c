@@ -10,7 +10,7 @@ void analizar(){
     do{
         e = nextComponent();
 
-        if(e.valor != -1){
+        if(e.valor != -100){
             printf("\n<\"%s\", %d>",e.identificador, e.valor);
         }
     }while(e.valor != -100);
