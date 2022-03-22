@@ -101,5 +101,7 @@ void findElement(tipoelem *element){
     if(find.valor == -1){
         element->valor = ID;
         insertElement(element->identificador, element->valor);
+    }else{
+        element->valor = find.valor;
     }
 }
