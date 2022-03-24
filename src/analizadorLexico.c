@@ -23,9 +23,6 @@ void nextComponent(tipoelem *actual){
         actual->identificador = NULL;
     }
 
-    actual->identificador = (char*)malloc(sizeof(char)*8);
-
-
     while(!done){
 
         siguiente = readChar();

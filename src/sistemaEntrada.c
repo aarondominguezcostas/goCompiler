@@ -95,24 +95,39 @@ void _loadBlock(int block){
 //esta funcion se encarga de devolver el lexema
 void getWord(tipoelem *lexema){
 
+    int posI;
+    if(inicio >= &bufferB[0] && inicio <= &bufferB[BUFFER_SIZE] ){
+        posI = inicio - &bufferB[0];
+    }else{
+        posI = inicio - &bufferA[0];
+    }
+
+    int posD;
+    if(delantero >= &bufferB[0] && delantero <= &bufferB[BUFFER_SIZE] ){
+        posD = delantero - &bufferB[0];
+    }else{
+        posD = delantero - &bufferA[0];
+    }
+
+    int size;
+    if(posI > posD){
+        size = posD+BUFFER_SIZE-posI;
+    }else{
+        size = posD-posI;
+    }
+
+    // se tiene que añadir ["\0"]
+    size += 1;
+
+    //se reserva memoria para el lexema
+    lexema->identificador = (char*)malloc(sizeof(char)*size);
+
     //se determina el tamaño maximo del lexema
-    int max = sizeof(lexema->identificador);
+    int max = size;
     int count=0;
 
     //mientras no se llegue a la posicion de delantero
     while(inicio!=delantero){
-
-        //Si es el penúltimo caracter del buffer de lexema, se duplica el tamaño
-        //hay que dejar 1 hueco por lo menos para '\0'
-        if(count==(max-1)){
-            max = max*2;
-            lexema->identificador = (char*) realloc(lexema->identificador, max);
-            if(lexema->identificador == NULL){
-                printf("Error: no se pudo duplicar el tamaño de la palabra");
-                exit(1);
-                printf("%d\n",max); 
-            }
-        }
 
         //se comprueba que no se haya sobrepasado el limite de tamaño de lexemas
         if(count>BUFFER_SIZE){
