@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "definiciones.h"
+#include "errores.h"
 
 #define A 0
 #define B 1
@@ -20,11 +21,18 @@ void _loadBlock(int block);
 // DUDA / Cargar 2 bloques o solo 1
 void initSystem(char* inputFile){
     archivo = fopen(inputFile, "r");
+
+    if(archivo == NULL){
+        showError(1);
+    }
+
+    //se inicializan los buffers
     bufferA[BUFFER_SIZE] = EOF;
     bufferB[BUFFER_SIZE] = EOF;
     inicio = bufferA;
     delantero = bufferA;
-    fread(bufferA,sizeof(char),BUFFER_SIZE,archivo);
+    //se carga el primer bloque
+    _loadBlock(A);
 }
 
 // cambiar a leer de los dos buffers
@@ -37,7 +45,7 @@ char readChar(){
             //comprobar que el puntero de inicio no esta en el bloque que se va a cargar
             if(inicio >= &bufferB[0] && inicio <= &bufferB[BUFFER_SIZE]){
                 //no se puede cargar un nuevo bloque
-                printf("No se puede cargar un nuevo bloque");
+                showError(3);
                 return EOF;
             }
             
@@ -47,7 +55,7 @@ char readChar(){
             //comprobar que el puntero de inicio no esta en el bloque que se va a cargar
             if(inicio >= &bufferA[0] && inicio <= &bufferA[BUFFER_SIZE]){
                 //no se puede cargar un nuevo bloque
-                printf("No se puede cargar un nuevo bloque");
+                showError(3);
                 return EOF;
             }
 
@@ -130,7 +138,7 @@ void getWord(tipoelem *lexema){
 
         //se comprueba que no se haya sobrepasado el limite de tamaño de lexemas
         if(count>BUFFER_SIZE){
-            printf("tamaño excedido");
+            showError(2);
             inicio = delantero;
         }else{
             //se recorren los buffers

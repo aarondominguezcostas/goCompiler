@@ -5,6 +5,7 @@
 #include "definiciones.h"
 #include "tablaSimbolos.h"
 #include "sistemaEntrada.h"
+#include "errores.h"
 
 void _numbers(tipoelem *actual);
 void _identifier(tipoelem *actual);
@@ -36,16 +37,13 @@ void nextComponent(tipoelem *actual){
         //todos los automatas van aqui
         //automata de numeros
         if(isdigit(siguiente)){ 
-            //printf("\nSe ha encontrado un numero");
-           // printf("%c", siguiente);
 
             _numbers(actual);
             done = 1;
 
         //automata para numeros en punto flotante
         }else if(siguiente == '.'){
-            //printf("\nSe ha encontrado un punto flotante");
-            //printf("%c", siguiente);
+
             if(_floats(actual,0,0,1)){
                 _operators(actual,siguiente);
             }        
@@ -54,8 +52,7 @@ void nextComponent(tipoelem *actual){
 
         //automata de identificadores
         }else if(isalpha(siguiente) || siguiente == '_'){
-            //printf("\nSe ha encontrado un identificador: %c \n", siguiente);
-    
+
             _identifier(actual);
             done = 1;
 
@@ -73,8 +70,7 @@ void nextComponent(tipoelem *actual){
         
         //automata para operadores
         }else if(siguiente == '+' || siguiente == '-' || siguiente == '*' || siguiente == '%' || siguiente == '=' || siguiente == '<' || siguiente == '>' || siguiente == '!' || siguiente == '&' || siguiente == '|' || siguiente == '^' || siguiente == '~' || siguiente == '?' || siguiente == ':' || siguiente == '(' || siguiente == ')' || siguiente == '[' || siguiente == ']' || siguiente == '{' || siguiente == '}' || siguiente == ',' || siguiente == ';'){
-            //printf("\nSe ha encontrado un operador: %c \n", siguiente);
-            //avanzaNext = 1;
+
             _operators(actual, siguiente);
             done = 1;
 
@@ -107,10 +103,10 @@ void _numbers(tipoelem *actual){
 
             //si ya ha aparecido una base, no se puede volver a aparecer
             if(base){
-                printf("\nError: ya ha aparecido una base");
+                showError(4);
                 done = 1;
             }else if(under){
-                printf("\nError: _ solo puede separar digitos sucesivos");
+                showError(5);
                 done = 1;
             }else{
                 base = 1;
@@ -124,7 +120,7 @@ void _numbers(tipoelem *actual){
             
             //no pueden aparecer 2 consecutivas
             if(under){
-                printf("\nError: ya ha aparecido un _");
+                showError(5);
                 done = 1;
             }else{
                 under = 1;
@@ -138,11 +134,11 @@ void _numbers(tipoelem *actual){
         }else if(siguiente == '.'){
 
             if(under){
-                printf("\nError: _ solo puede separar digitos sucesivos");
+                showError(5);
                 done = 1;
 
             }else if(hex && !mantissa){
-                printf("\nError: la mantissa necesita digitos");
+                showError(6);
                 done = 1;
             }else{
                 _floats(actual,hex,0,0);
@@ -188,7 +184,7 @@ int _floats(tipoelem *actual, int hex, int exponent, int startsFp) {
             }
         }else if(siguiente == '_'){
             if(under || point){
-                printf("\nError: _ solo puede separar digitos sucesivos");
+                showError(5);
                 done = 1;
             }else{
                 under = 1;
@@ -196,21 +192,21 @@ int _floats(tipoelem *actual, int hex, int exponent, int startsFp) {
             }
         }else if(!hex && (siguiente == 'e' || siguiente == 'E')){
             if(under){
-                printf("\nError: _ solo puede separar digitos sucesivos");
+                showError(5);
                 done = 1;
             }else{
                 exponent = 1;
             }
         }else if(hex && (siguiente == 'p' || siguiente == 'P')){
             if(under){
-                printf("\nError: _ solo puede separar digitos sucesivos");
+                showError(5);
                 done = 1;
             }else{
                 exponent = 1;
             }
         }else if(siguiente == '+' || siguiente == '-'){
             if(checkExponent){
-                printf("\nError: no se puede usar E como exponente en hex");
+                showError(7);
                 done = 1;
             }else if(!exponent){
                 //si no hay un exponente, es una operacion, hay que devolver
@@ -285,11 +281,6 @@ void _stringLiteral(tipoelem *actual, char limiter){
             //construir tipoelem
             getWord(actual);
             actual->valor = STRING;
-
-
-        }else if( siguiente == '\n' ){
-            printf("\nError: se ha encontrado un salto de linea en un string literal");
-            done = 1;
         }else{
             skip = 0;
         }
