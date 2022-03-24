@@ -124,6 +124,7 @@ void getWord(tipoelem *lexema){
             }
         }
     }
+    lexema->identificador[count] = '\0';
 }
 
 //devolver caracter

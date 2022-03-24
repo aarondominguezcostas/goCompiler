@@ -7,16 +7,21 @@
 void analizar(){
     //itera por todos los componentes
     tipoelem e;
+    e.identificador = NULL;
 
     do{
-        e =  nextComponent();
+        
+        nextComponent(&e);
 
         if(e.valor != -100){
             printf("\n<\"%s\", %d>",e.identificador, e.valor);
         }
-        free(e.identificador);
-
 
     }while(e.valor != -100);
+
+    if(e.identificador != NULL){
+        free(e.identificador);
+        e.identificador = NULL;
+    }
 
 }

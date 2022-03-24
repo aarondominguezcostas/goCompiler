@@ -9,10 +9,11 @@
 #define FOR 305
 #define RANGE 306
 #define GO 307
-#define FLOAT32 308
 #define INTEGER 450
-#define STRING 451
-#define OPERATOR 452
+#define FLOAT 451
+#define IMAGINARY 452
+#define STRING 453
+#define OPERATOR 454
 
 #define ID 550
 

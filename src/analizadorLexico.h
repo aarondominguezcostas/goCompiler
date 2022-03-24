@@ -1,3 +1,3 @@
 #include "definiciones.h"
 
-tipoelem nextComponent();
+tipoelem * nextComponent();

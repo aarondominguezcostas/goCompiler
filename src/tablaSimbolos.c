@@ -21,7 +21,7 @@ void initTable(){
     crear(&tabla);
 
     //aqui se deberian cargar todas las palabras reservadas a la tabla de simbolos
-    char *palabras[9];
+    char *palabras[8];
     palabras[0] = "package";
     palabras[1] = "import";
     palabras[2] = "func";
@@ -30,9 +30,8 @@ void initTable(){
     palabras[5] = "for";
     palabras[6] = "range";
     palabras[7] = "go";
-    palabras[8] = "float32";
 
-    int valores[9];
+    int valores[8];
     valores[0] = PACKAGE;
     valores[1] = IMPORT;
     valores[2] = FUNC;
@@ -41,9 +40,8 @@ void initTable(){
     valores[5] = FOR;
     valores[6] = RANGE;
     valores[7] = GO;
-    valores[8] = FLOAT32;
 
-    for(int i = 0; i < 9; i++){
+    for(int i = 0; i < 8; i++){
         insertElement(palabras[i], valores[i]);
     }
 
@@ -64,9 +62,6 @@ void insertElement(char* id, int valor){
     insertar(&tabla, elemento);
 }
 
-void insertTipoelem(tipoelem elemento){
-    insertar(&tabla, elemento);
-}
 
 //funcion externa que permite imprimir la tabla de simbolos
 void printTable(){
@@ -92,16 +87,17 @@ void _printTable(abb A){
 void findElement(tipoelem *element){
 
     //buscamos el elemento en la tabla de simbolos
-    //printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
+    printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
 
-    tipoelem find;
-    find.valor = -1;
-    buscar_nodo(tabla, element->identificador, &find);
-    
-    if(find.valor == -1){
+    if(es_miembro(tabla, *element)){
+        tipoelem find;
+        buscar_nodo(tabla, element->identificador, &find);
+        element->valor = find.valor;
+    }else{
         element->valor = ID;
         insertElement(element->identificador, element->valor);
-    }else{
-        element->valor = find.valor;
     }
+
+    
+
 }
