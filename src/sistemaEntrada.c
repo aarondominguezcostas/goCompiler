@@ -95,6 +95,7 @@ void _loadBlock(int block){
 //esta funcion se encarga de devolver el lexema
 void getWord(tipoelem *lexema){
 
+    //se calculan las posiciones de inicio y delantero dentro de los buffers para saber el tamaño del lexema
     int posI;
     if(inicio >= &bufferB[0] && inicio <= &bufferB[BUFFER_SIZE] ){
         posI = inicio - &bufferB[0];
@@ -122,8 +123,6 @@ void getWord(tipoelem *lexema){
     //se reserva memoria para el lexema
     lexema->identificador = (char*)malloc(sizeof(char)*size);
 
-    //se determina el tamaño maximo del lexema
-    int max = size;
     int count=0;
 
     //mientras no se llegue a la posicion de delantero
