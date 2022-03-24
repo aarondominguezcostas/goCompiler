@@ -266,8 +266,6 @@ void _identifier(tipoelem *actual){
             //construir tipoelem
             getWord(actual);
 
-            printf("\n%s", actual->identificador);
-
             //buscar en la tabla de simbolos
             findElement(actual);
         }

@@ -41,6 +41,7 @@ void initTable(){
     valores[6] = RANGE;
     valores[7] = GO;
 
+    //insertamos las palabras reservadas en la tabla de simbolos
     for(int i = 0; i < 8; i++){
         insertElement(palabras[i], valores[i]);
     }
@@ -49,16 +50,18 @@ void initTable(){
 
 //destruye la tabla de simbolos para liberar memoria
 void destroyTable(){
+    //se llama a la funcion destruir de la libreria abb
     destruir(&tabla);
 }
 
 //funcion que permite insertar un elemento en la tabla de simbolos
 void insertElement(char* id, int valor){
+    //primero se crea el elemento a insertar
     tipoelem elemento;
     elemento.identificador = (char*)malloc(sizeof(char)*8);
     strcpy(elemento.identificador, id);
     elemento.valor = valor;
-
+    //se inserta el elemento en la tabla de simbolos
     insertar(&tabla, elemento);
 }
 
@@ -87,17 +90,13 @@ void _printTable(abb A){
 void findElement(tipoelem *element){
 
     //buscamos el elemento en la tabla de simbolos
-    printf("\nBuscando elemento %s en la tabla de simbolos...\n", element->identificador);
-
     if(es_miembro(tabla, *element)){
         tipoelem find;
         buscar_nodo(tabla, element->identificador, &find);
         element->valor = find.valor;
+    //si no existe simplemente lo insertamos y establecemos como valor ID
     }else{
         element->valor = ID;
         insertElement(element->identificador, element->valor);
     }
-
-    
-
 }

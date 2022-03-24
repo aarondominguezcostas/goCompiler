@@ -5,20 +5,20 @@
 #include "definiciones.h"
 
 void analizar(){
-    //itera por todos los componentes
+    //Primero se crea el componente que se va a reutilizar para recibir los componentes lexicos
     tipoelem e;
     e.identificador = NULL;
 
+    //se itera hasta que se recibe EOF, cuyo valor se establece en -100
     do{
-        
         nextComponent(&e);
 
         if(e.valor != -100){
             printf("\n<\"%s\", %d>",e.identificador, e.valor);
         }
-
     }while(e.valor != -100);
 
+    //se libera la memoria del identificador
     if(e.identificador != NULL){
         free(e.identificador);
         e.identificador = NULL;

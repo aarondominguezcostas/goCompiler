@@ -13,13 +13,17 @@ int main(){
     //iniciar sistema de entrada
     initSystem("concurrentSum.go");
 
-    //iniciar tabla de simbolos
+    //iniciar tabla de simbolos e imprimirla
     initTable();
     printTable();
 
+    //iniciar analizador sintactico
     analizar();
 
+    //volver a imprimir la tabla de simbolos
     printTable();
+
+    //liberar memoria correspondiente a la tabla de simbolos y al sistema de entrada
     destroyTable();
     endSystem();
 }

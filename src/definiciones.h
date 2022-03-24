@@ -1,6 +1,10 @@
 #ifndef DEF_H
 #define DEF_H
 
+/**
+ * Definiciones de los valores de los componentes lexicos 
+ */
+
 #define PACKAGE 300
 #define IMPORT 301
 #define FUNC 302
@@ -14,7 +18,6 @@
 #define IMAGINARY 452
 #define STRING 453
 #define OPERATOR 454
-
 #define ID 550
 
 typedef struct  {

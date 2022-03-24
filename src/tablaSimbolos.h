@@ -3,18 +3,26 @@
 
 #include "definiciones.h"
 
-//funcion para crear la tabla de simbolos
+/**
+ * Funcion que inicializa la tabla de simbolos
+ */
 void initTable();
 
-//funcion para eliminar la tabla de simbolos
+/**
+ * Funcion que libera la memoria la tabla de simbolos
+ */
 void destroyTable();
 
-//funcion para insertar un elemento en la tabla de simbolos
-void insertElement(char* id, int valor);
-
-//funcion para imprimir la tabla de simbolos
+/**
+ * Funcion que imprime la tabla de simbolos
+ */
 void printTable();
 
-
+/**
+ * Funcion que busca un elemento en la tabla de simbolos
+ * Si este existe, devuelve un struct con su valor 
+ * Si no existe, se inserta en la tabla de simbolos y se devuelve un struct con su valor
+ * @param elem elemento a buscar
+ */
 void findElement(tipoelem *element);
 #endif

@@ -27,13 +27,14 @@ void initSystem(char* inputFile){
     fread(bufferA,sizeof(char),BUFFER_SIZE,archivo);
 }
 
-// TODO > comprobar que se lee caracter a caracter
 // cambiar a leer de los dos buffers
 char readChar(){
+    //se comprueba que no está al final del buffer
     if( *delantero == EOF ){
         //cargar nuevo bloque A
         if (delantero == bufferA+BUFFER_SIZE){
             
+            //comprobar que el puntero de inicio no esta en el bloque que se va a cargar
             if(inicio >= &bufferB[0] && inicio <= &bufferB[BUFFER_SIZE]){
                 //no se puede cargar un nuevo bloque
                 printf("No se puede cargar un nuevo bloque");
@@ -57,20 +58,21 @@ char readChar(){
         }
     }
 
+    //se devuelve el caracter correspondiente
     char res = *delantero;
     delantero++;
     return res;
 
 }
 
-// se finaliza el sistema
+//liberar memoria del sistema de entrada y cerrar el archivo
 void endSystem(){
     inicio=NULL;
     delantero=NULL;
     fclose(archivo);
 }
 
-//cargar nuevo bloque de caracteres
+//funcion privada que carga un nuevo bloque en el buffer correspondiente
 void _loadBlock(int block){
     int count = 0;
     if(block==A){
@@ -93,11 +95,15 @@ void _loadBlock(int block){
 //esta funcion se encarga de devolver el lexema
 void getWord(tipoelem *lexema){
 
+    //se determina el tamaño maximo del lexema
     int max = sizeof(lexema->identificador);
     int count=0;
+
+    //mientras no se llegue a la posicion de delantero
     while(inicio!=delantero){
 
-        //hay que duplicar el tamaño de la palabra
+        //Si es el penúltimo caracter del buffer de lexema, se duplica el tamaño
+        //hay que dejar 1 hueco por lo menos para '\0'
         if(count==(max-1)){
             max = max*2;
             lexema->identificador = (char*) realloc(lexema->identificador, max);
@@ -107,6 +113,8 @@ void getWord(tipoelem *lexema){
                 printf("%d\n",max); 
             }
         }
+
+        //se comprueba que no se haya sobrepasado el limite de tamaño de lexemas
         if(count>BUFFER_SIZE){
             printf("tamaño excedido");
             inicio = delantero;
@@ -124,6 +132,8 @@ void getWord(tipoelem *lexema){
             }
         }
     }
+
+    //se termina el lexema con '\0'
     lexema->identificador[count] = '\0';
 }
 
@@ -142,14 +152,16 @@ void avanzar(){
     }else if(inicio == bufferB+BUFFER_SIZE){
         inicio = bufferA;
     }
-
 }
 
+// funcion que se encarga de mover el puntero de inicio, saltandose el comentario
 void readComment(){
+    //primero se comprueba que delantero no esta en el final del buffer
     if (delantero == bufferA+BUFFER_SIZE){
         _loadBlock(B);
     }else if(delantero == bufferB+BUFFER_SIZE){
         _loadBlock(A);
     }
+    //se mueve el puntero de inicio a la posicion del delantero
     inicio = delantero;
 }
