@@ -85,7 +85,5 @@ hay que tener en cuenta el retroceso de un caracter
 # checkear con valgrind https://valgrind.org/
 
 TODO>
-Gestion de errores
-Analizador lexico, numeros
-repasar tama;o de buffers
-contar saltos de linea???
+Comentar analizador lexico
+Arreglar operadores

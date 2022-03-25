@@ -13,10 +13,10 @@ void analizar(){
     do{
         nextComponent(&e);
 
-        if(e.valor != -100){
+        if(e.valor != EOFVALUE){
             printf("\n<\"%s\", %d>",e.identificador, e.valor);
         }
-    }while(e.valor != -100);
+    }while(e.valor != EOFVALUE);
 
     //se libera la memoria del identificador
     if(e.identificador != NULL){
