@@ -106,21 +106,21 @@ void getWord(tipoelem *lexema){
     //se calculan las posiciones de inicio y delantero dentro de los buffers para saber el tamaño del lexema
     int posI;
     if(inicio >= &bufferB[0] && inicio <= &bufferB[BUFFER_SIZE] ){
-        posI = inicio - &bufferB[0];
+        posI = inicio - &bufferB[0] + BUFFER_SIZE;
     }else{
         posI = inicio - &bufferA[0];
     }
 
     int posD;
     if(delantero >= &bufferB[0] && delantero <= &bufferB[BUFFER_SIZE] ){
-        posD = delantero - &bufferB[0];
+        posD = delantero - &bufferB[0] + BUFFER_SIZE;
     }else{
         posD = delantero - &bufferA[0];
     }
 
     int size;
     if(posI > posD){
-        size = posD+BUFFER_SIZE-posI;
+        size = (posD+2*BUFFER_SIZE)-posI;
     }else{
         size = posD-posI;
     }

@@ -356,6 +356,9 @@ int _comment(){
     }else if( siguiente == '/' ){
         while(siguiente != '\n'){
             siguiente = readChar();
+            
+            //es necesario ir avanzando el puntero de inicio
+            avanzar();
         }
         devolver();
         readComment();
