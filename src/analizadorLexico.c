@@ -8,7 +8,7 @@
 #include "errores.h"
 
 //definicion de todos los automatas del analizador lexico
-void _numbers(tipoelem *actual);
+void _numbers(tipoelem *actual, int first0);
 void _identifier(tipoelem *actual);
 void _stringLiteral(tipoelem *actual, char limiter);
 int _comment();
@@ -43,7 +43,12 @@ void nextComponent(tipoelem *actual){
         //automata de numeros
         if(isdigit(siguiente)){ 
 
-            _numbers(actual);
+            if (siguiente == '0'){
+                _numbers(actual, 1);
+            }
+            else{
+                _numbers(actual, 0);
+            }
             done = 1;
 
         //automata para numeros en punto flotante
@@ -98,13 +103,15 @@ void nextComponent(tipoelem *actual){
 }
 
 //automata de numeros
-void _numbers(tipoelem *actual){
+//first0 es un flag que indica si el primer digito es 0, para reconocer numeros con base
+void _numbers(tipoelem *actual, int first0){
 
     char siguiente = 0;
     char base = 0;
     int done = 0;
     char under = 0; //determina si el numero anterior era'_'
     int hex = 0; //determina si el numero es hexadecimal
+
     int mantissa = 0; //flag necesaria para los numeros hexadecimales con exponente
     while(!done){
         siguiente = readChar();
@@ -115,7 +122,7 @@ void _numbers(tipoelem *actual){
             mantissa = 1;
 
         //se comprueba si el caracter es una de las bases
-        }else if( siguiente == 'b' || siguiente == 'B' || siguiente == 'o' || siguiente == 'O' || siguiente == 'x' || siguiente == 'X' ){
+        }else if( (siguiente == 'b' || siguiente == 'B' || siguiente == 'o' || siguiente == 'O' || siguiente == 'x' || siguiente == 'X') && first0 ){
 
             //si ya ha aparecido una base, no se puede volver a aparecer
             if(base){
@@ -124,8 +131,6 @@ void _numbers(tipoelem *actual){
             }else if(under){
                 showError(5);
                 done = 1;
-            }else{
-                base = 1;
             }
 
             //es necesario guardar si es hexadecimal a parte para pasarselo al automata de floats
@@ -177,6 +182,9 @@ void _numbers(tipoelem *actual){
             getWord(actual);
             actual->valor = INTEGER;
         }
+
+        //si no se ha reconocido una base, se establece la base 10, y cualquier otra dara error
+        base = 1;
     }
 }
 
