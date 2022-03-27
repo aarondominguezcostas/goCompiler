@@ -58,7 +58,8 @@ void destroyTable(){
 void insertElement(char* id, int valor){
     //primero se crea el elemento a insertar
     tipoelem elemento;
-    elemento.identificador = (char*)malloc(sizeof(char)*8);
+    int tam = strlen(id) + 1;
+    elemento.identificador = (char*)malloc(sizeof(char)*tam);
     strcpy(elemento.identificador, id);
     elemento.valor = valor;
     //se inserta el elemento en la tabla de simbolos

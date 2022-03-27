@@ -21,12 +21,6 @@ void nextComponent(tipoelem *actual){
     int done = 0;
     int avanzaNext = 0;
 
-    //liberamos la memoria del identificador si no estaba ya liberada
-    if(actual->identificador!=NULL){
-        free(actual->identificador);
-        actual->identificador = NULL;
-    }
-
     //este bucle se lleva a cabo mientras no se reconozca un componente lexico
     while(!done){
 

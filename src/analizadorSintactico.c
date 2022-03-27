@@ -16,12 +16,13 @@ void analizar(){
         if(e.valor != EOFVALUE){
             printf("\n<\"%s\", %d>",e.identificador, e.valor);
         }
-    }while(e.valor != EOFVALUE);
 
-    //se libera la memoria del identificador
-    if(e.identificador != NULL){
-        free(e.identificador);
-        e.identificador = NULL;
-    }
+        //se libera la memoria del identificador
+        if(e.identificador != NULL){
+            free(e.identificador);
+            e.identificador = NULL;
+        }
+
+    }while(e.valor != EOFVALUE);
 
 }
