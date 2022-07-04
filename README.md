@@ -1,5 +1,13 @@
 # goCompiler
 
+
+GoLang Compiler written in C
+
+
+Use "make" command in the project folder to compile the file. The executable will be created inside the "build" folder.
+
+
+
 Compilador de Go en C.
 
 Para compilar el programa, se debe usar el comando "make" en el directorio principal del proyecto.
